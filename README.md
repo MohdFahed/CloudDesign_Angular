@@ -1,1 +1,3 @@
 # NgRx
+
+this is for Read purpose only...
