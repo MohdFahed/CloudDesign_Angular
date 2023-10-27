@@ -1,0 +1,12 @@
+a {
+  margin: 5px;
+  padding: 5px;
+  font-size: small;
+  border-radius: 5px;
+
+  text-decoration: none;
+}
+a:hover {
+  cursor: pointer;
+  background-color: #3f51b5;
+}
