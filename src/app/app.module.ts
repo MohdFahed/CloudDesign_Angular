@@ -1,8 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { CounterbuttonComponent } from './components/counterbutton/counterbutton.component';
-import { CounterDisplayComponent } from './components/counter-display/counter-display.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +23,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { blogReducer } from './shared/blog/blog.reducer';
 import { HomeComponent } from './components/home/home.component';
 import { DailLogBoxComponent } from './components/dail-log-box/dail-log-box.component';
+import { CounterbuttonComponent } from './components/counterbutton/counterbutton.component';
+import { CounterDisplayComponent } from './components/counter-display/counter-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { DailLogBoxComponent } from './components/dail-log-box/dail-log-box.comp
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
+    ReactiveFormsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],

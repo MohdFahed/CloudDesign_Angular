@@ -4,8 +4,11 @@
 </div>
 <mat-card *ngFor="let item of blogList">
   <mat-card-header>
-    <h1>{{ item.title }}</h1></mat-card-header
-  >
+    <h1>{{ item.title }}</h1>
+    <div style="text-align: right; width: 100%">
+      <button (click)="updateBlog(item.id)">Edit</button>
+    </div>
+  </mat-card-header>
   <mat-card-content
     ><p>{{ item.description }}</p></mat-card-content
   >

@@ -23,16 +23,24 @@ export class BlogComponent implements OnInit {
     console.log(this.blogList);
   }
   add() {
-    this.openDailogBox();
+    this.openDailogBox(0, 'Add Blog', false);
   }
-  openDailogBox() {
+  openDailogBox(id: any, title: any, isEdit: boolean = false) {
     const dialogRef = this.dialog.open(DailLogBoxComponent, {
       width: '50%',
-      height: '50%',
+      data: {
+        id: id,
+        title: title,
+        isEdit: isEdit,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
+  }
+
+  updateBlog(id: any) {
+    this.openDailogBox(id, 'Edit Blog', true);
   }
 }
