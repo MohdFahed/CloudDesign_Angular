@@ -4,6 +4,7 @@ import { BlogModel, Blogs } from 'src/app/shared/blog/blog.model';
 import { getBlogs } from 'src/app/shared/blog/blog.selector';
 import { DailLogBoxComponent } from '../dail-log-box/dail-log-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { deleteBlog } from 'src/app/shared/blog/blog.action';
 
 @Component({
   selector: 'app-blog',
@@ -42,5 +43,10 @@ export class BlogComponent implements OnInit {
 
   updateBlog(id: any) {
     this.openDailogBox(id, 'Edit Blog', true);
+  }
+  deleteBlog(id: any) {
+    if (confirm('Are you sure')) {
+      this.store.dispatch(deleteBlog({ id: id }));
+    }
   }
 }

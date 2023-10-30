@@ -9,4 +9,6 @@ export const updateBlog = createAction(
   'UPDATEBLOG',
   props<{ input: BlogModel }>()
 );
+
+export const deleteBlog = createAction('DELETEBLOG', props<{ id: number }>());
 //,props<{}>()
