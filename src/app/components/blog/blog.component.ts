@@ -4,7 +4,8 @@ import { BlogModel, Blogs } from 'src/app/shared/blog/blog.model';
 import { getBlogs } from 'src/app/shared/blog/blog.selector';
 import { DailLogBoxComponent } from '../dail-log-box/dail-log-box.component';
 import { MatDialog } from '@angular/material/dialog';
-import { deleteBlog } from 'src/app/shared/blog/blog.action';
+import { deleteBlog, loadBlog } from 'src/app/shared/blog/blog.action';
+import { MasterService } from 'src/app/shared/master.service';
 
 @Component({
   selector: 'app-blog',
@@ -15,9 +16,11 @@ export class BlogComponent implements OnInit {
   blogList!: BlogModel[];
   constructor(
     private store: Store<{ blog: BlogModel[] }>,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private masterService: MasterService
   ) {}
   ngOnInit() {
+    this.store.dispatch(loadBlog());
     this.store.select(getBlogs).subscribe((res) => {
       this.blogList = res;
     });

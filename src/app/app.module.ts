@@ -25,6 +25,9 @@ import { HomeComponent } from './components/home/home.component';
 import { DailLogBoxComponent } from './components/dail-log-box/dail-log-box.component';
 import { CounterbuttonComponent } from './components/counterbutton/counterbutton.component';
 import { CounterDisplayComponent } from './components/counter-display/counter-display.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BLogEffect } from './shared/blog/blog.effect';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +56,8 @@ import { CounterDisplayComponent } from './components/counter-display/counter-di
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    EffectsModule.forRoot([BLogEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],

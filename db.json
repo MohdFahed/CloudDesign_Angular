@@ -1,0 +1,19 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Angular 14",
+      "description": "Angular is opensource and developed by Google"
+    },
+    {
+      "id": 2,
+      "title": "React",
+      "description": "React is opensource and developed by Facebooks"
+    },
+    {
+      "id": 3,
+      "title": "Vue Js",
+      "description": "Vue is opensource and developed by Facebooks"
+    }
+  ]
+}
