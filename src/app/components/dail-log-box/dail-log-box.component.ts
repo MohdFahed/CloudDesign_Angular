@@ -1,10 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { addBlog, updateBlog } from 'src/app/shared/blog/blog.action';
 import { BlogModel } from 'src/app/shared/blog/blog.model';
 import { getBlogById } from 'src/app/shared/blog/blog.selector';
+import { MasterService } from 'src/app/shared/master.service';
+import { updateReg } from 'src/app/shared/registration/reg.action';
+import { getRegById } from 'src/app/shared/registration/reg.selector';
 
 @Component({
   selector: 'app-dail-log-box',
@@ -16,52 +19,80 @@ export class DailLogBoxComponent implements OnInit {
   pageTitle: any;
   blogId: any;
   editData!: BlogModel;
+
+  city: any;
+  state: any;
   constructor(
     private dailogRef: MatDialogRef<DailLogBoxComponent>,
     private fb: FormBuilder,
     private store: Store<{ blog: BlogModel[] }>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private masterService: MasterService
   ) {
     this.createForm();
   }
   ngOnInit(): void {
-    this.pageTitle = this.data.title;
-    if (this.data.isEdit) {
-      this.blogId = this.data.id;
-
-      this.store.select(getBlogById(this.blogId)).subscribe((res) => {
-        console.log(res);
-        this.editData = res;
-        this.form.patchValue(this.editData);
-      });
-    }
+    this.state = this.masterService.getState();
+    this.changes();
+    this.blogId = this.data.id;
+    this.store.select(getRegById(this.blogId)).subscribe((res) => {
+      this.editData = res;
+      this.form.patchValue(this.editData);
+    });
   }
-
+  changes() {
+    this.form.get('state')?.valueChanges.subscribe((res: any) => {
+      let city: any = [];
+      if (res === 'Maharashtra') {
+        this.city = this.masterService.data.Maharashtra;
+      } else if (res === 'Karnataka') {
+        this.city = this.masterService.data.Karnataka;
+      }
+    });
+  }
   closePopUp() {
     this.dailogRef.close();
   }
+
   createForm() {
     this.form = this.fb.group({
       id: [0],
-      title: [''],
-      description: [''],
+      name: [
+        '',
+        Validators.compose([
+          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.required,
+        ]),
+      ],
+      phoneNo: [
+        '',
+        Validators.compose([
+          Validators.pattern(/^[6-9]\d{9}$/),
+          Validators.required,
+        ]),
+      ],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
     });
   }
 
-  addBlog() {
-    const inputBlog: BlogModel = {
+  update() {
+    if (this.form.invalid) {
+      return;
+    }
+    const inputReg = {
       id: 0,
-      title: this.form.value.title,
-      description: this.form.value.description,
+      name: this.form.value.name,
+      phoneNo: this.form.value.phoneNo,
+      state: this.form.value.state,
+      city: this.form.value.city,
     };
-    if (this.form.valid && !this.data.isEdit) {
-      this.store.dispatch(addBlog({ input: inputBlog }));
-      this.closePopUp();
-    }
-    if (this.form.valid && this.data.isEdit) {
-      inputBlog.id = this.form.value.id as number;
-      this.store.dispatch(updateBlog({ input: inputBlog }));
-      this.closePopUp();
-    }
+    inputReg.id = this.form.value.id as number;
+    this.store.dispatch(updateReg({ regInput: inputReg }));
+    this.closePopUp();
   }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  };
 }

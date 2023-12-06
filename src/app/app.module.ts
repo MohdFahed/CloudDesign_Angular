@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
@@ -28,6 +29,9 @@ import { CounterDisplayComponent } from './components/counter-display/counter-di
 import { HttpClientModule } from '@angular/common/http';
 import { BLogEffect } from './shared/blog/blog.effect';
 import { EffectsModule } from '@ngrx/effects';
+import { RegistrationComponent } from './registration/registration.component';
+import { regReducer } from './shared/registration/reg.reducer';
+import { RegDisplayComponent } from './reg-display/reg-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +41,8 @@ import { EffectsModule } from '@ngrx/effects';
     BlogComponent,
     HomeComponent,
     DailLogBoxComponent,
+    RegistrationComponent,
+    RegDisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,7 @@ import { EffectsModule } from '@ngrx/effects';
       counter: CounterReducer,
       names: nameChageReducer,
       blog: blogReducer,
+      reg: regReducer,
     }),
     BrowserAnimationsModule,
     MatButtonModule,
@@ -55,6 +62,7 @@ import { EffectsModule } from '@ngrx/effects';
     MatToolbarModule,
     MatIconModule,
     MatDialogModule,
+    MatTableModule,
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([BLogEffect]),

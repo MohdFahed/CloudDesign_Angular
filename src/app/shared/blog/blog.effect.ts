@@ -9,17 +9,17 @@ import { LOAD_BLOG, LOAD_BLOG_SUCCESS, loadSuccessBlog } from './blog.action';
 export class BLogEffect {
   constructor(private action$: Actions, private service: MasterService) {}
 
-  _blog = createEffect(() =>
-    this.action$.pipe(
-      ofType(LOAD_BLOG),
-      exhaustMap((action) => {
-        return this.service.getAllBlogs().pipe(
-          map((data) => {
-            return loadSuccessBlog({ blogList: data });
-          }),
-          catchError((e) => EMPTY)
-        );
-      })
-    )
-  );
+  // _blog = createEffect(() =>
+  //   this.action$.pipe(
+  //     ofType(LOAD_BLOG),
+  //     exhaustMap((action) => {
+  //       return this.service.getAllBlogs().pipe(
+  //         map((data) => {
+  //           return loadSuccessBlog({ blogList: data });
+  //         }),
+  //         catchError((e) => EMPTY)
+  //       );
+  //     })
+  //   )
+  // );
 }

@@ -1,12 +1,21 @@
-a {
-  margin: 5px;
-  padding: 5px;
-  font-size: small;
-  border-radius: 5px;
-
-  text-decoration: none;
+.mat-mdc-card {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
 }
-a:hover {
-  cursor: pointer;
-  background-color: #3f51b5;
+.container {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.display-container {
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 2%;
+}
+.wrapper {
+  width: 90%;
+  margin-left: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
