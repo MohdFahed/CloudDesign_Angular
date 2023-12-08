@@ -15,31 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
-import {
-  CounterReducer,
-  nameChageReducer,
-} from './shared/store/counter.reducer';
-import { SimpleExampleComponent } from './components/simple-example/simple-example.component';
-import { BlogComponent } from './components/blog/blog.component';
-import { blogReducer } from './shared/blog/blog.reducer';
-import { HomeComponent } from './components/home/home.component';
 import { DailLogBoxComponent } from './components/dail-log-box/dail-log-box.component';
-import { CounterbuttonComponent } from './components/counterbutton/counterbutton.component';
-import { CounterDisplayComponent } from './components/counter-display/counter-display.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BLogEffect } from './shared/blog/blog.effect';
-import { EffectsModule } from '@ngrx/effects';
-import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { regReducer } from './shared/registration/reg.reducer';
-import { RegDisplayComponent } from './reg-display/reg-display.component';
+import { RegDisplayComponent } from './components/reg-display/reg-display.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounterbuttonComponent,
-    CounterDisplayComponent,
-    SimpleExampleComponent,
-    BlogComponent,
-    HomeComponent,
     DailLogBoxComponent,
     RegistrationComponent,
     RegDisplayComponent,
@@ -48,9 +31,6 @@ import { RegDisplayComponent } from './reg-display/reg-display.component';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({
-      counter: CounterReducer,
-      names: nameChageReducer,
-      blog: blogReducer,
       reg: regReducer,
     }),
     BrowserAnimationsModule,
@@ -65,7 +45,7 @@ import { RegDisplayComponent } from './reg-display/reg-display.component';
     MatTableModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EffectsModule.forRoot([BLogEffect]),
+
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],

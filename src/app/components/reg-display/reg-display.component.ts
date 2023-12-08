@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getRegs } from '../shared/registration/reg.selector';
-import { deleteReg } from '../shared/registration/reg.action';
+import { getRegs } from '../../shared/registration/reg.selector';
+import { deleteReg } from '../../shared/registration/reg.action';
 import { MatDialog } from '@angular/material/dialog';
-import { DailLogBoxComponent } from '../components/dail-log-box/dail-log-box.component';
+import { DailLogBoxComponent } from '../dail-log-box/dail-log-box.component';
 
 @Component({
   selector: 'app-reg-display',

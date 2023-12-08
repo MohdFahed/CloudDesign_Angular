@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getRegs } from '../shared/registration/reg.selector';
-import { addReg } from '../shared/registration/reg.action';
+import { getRegs } from '../../shared/registration/reg.selector';
+import { addReg } from '../../shared/registration/reg.action';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MasterService } from '../shared/master.service';
+import { MasterService } from '../../shared/master.service';
 
 @Component({
   selector: 'app-registration',

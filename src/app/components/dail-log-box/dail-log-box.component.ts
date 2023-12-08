@@ -2,9 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { addBlog, updateBlog } from 'src/app/shared/blog/blog.action';
-import { BlogModel } from 'src/app/shared/blog/blog.model';
-import { getBlogById } from 'src/app/shared/blog/blog.selector';
 import { MasterService } from 'src/app/shared/master.service';
 import { updateReg } from 'src/app/shared/registration/reg.action';
 import { getRegById } from 'src/app/shared/registration/reg.selector';
@@ -18,14 +15,14 @@ export class DailLogBoxComponent implements OnInit {
   form!: FormGroup;
   pageTitle: any;
   blogId: any;
-  editData!: BlogModel;
+  editData: any;
 
   city: any;
   state: any;
   constructor(
     private dailogRef: MatDialogRef<DailLogBoxComponent>,
     private fb: FormBuilder,
-    private store: Store<{ blog: BlogModel[] }>,
+    private store: Store<{ blog: any }>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private masterService: MasterService
   ) {
